@@ -1,6 +1,5 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-//import MissionTracker from './mission_tracker'
-import About from './About'
+import ProjectBlueprint from './project_blueprint'
 
 
 function App() {
@@ -8,11 +7,11 @@ function App() {
   return (
     <BrowserRouter>
       <nav>
-        <Link to="/">About</Link>
+        <Link to="/">Project Blueprint</Link>
       </nav>
 
       <Routes>
-        <Route path="/" element={<About />} />
+        <Route path="/" element={<ProjectBlueprint />} />
         
       </Routes>
     </BrowserRouter>

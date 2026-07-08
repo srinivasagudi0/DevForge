@@ -1,0 +1,15 @@
+body {
+    background-color: black;
+}
+
+.caption {
+    text-align: center;
+    color: white;
+}
+
+.title1 {
+    text-align: center;
+    color: white;
+    text-decoration: underline;
+}
+
