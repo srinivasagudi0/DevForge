@@ -1,5 +1,6 @@
 body {
-    background-color: black;
+    background-image: url("/Users/srinivasagudi/Desktop/DevForge/frontend/background.png");
+    background-size: cover;
 }
 
 .caption {
@@ -12,4 +13,3 @@ body {
     color: white;
     text-decoration: underline;
 }
-
