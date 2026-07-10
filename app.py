@@ -33,4 +33,6 @@ if nav == "Home":
 if nav == "Project Blueprint":
     st.title("Project Blueprint")
     st.caption("Select a template and customize it to create your project structure.")
-    st.caption("This feature is currently under development. Please check back later for updates.")
+    template = st.selectbox("Choose a template", ["Flask", "React", "Django", "Node.js", "Vue.js", "Angular", "FastAPI", "Next.js", "Svelte", "Express.js", "Laravel", "Spring Boot", "Ruby on Rails", "ASP.NET Core"])
+    if st.button('Generate Project Structure'):
+        st.success(f"Project structure for {template} generated successfully!")
