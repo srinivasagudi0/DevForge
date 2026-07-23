@@ -77,7 +77,6 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
-          cache: maven
       - run: pip install -r api/requirements.txt
       - run: PYTHONPATH=api python api/scripts/export_default.py spring .generated/spring
       - working-directory: .generated/spring
