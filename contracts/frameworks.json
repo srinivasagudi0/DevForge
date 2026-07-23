@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "frameworks": [
+    {
+      "id": "flask",
+      "name": "Flask",
+      "category": "Python API",
+      "icon": "PY",
+      "packageManagers": ["pip"],
+      "databases": ["none", "sqlite", "postgresql"],
+      "auth": ["none", "jwt"],
+      "styling": ["none"]
+    },
+    {
+      "id": "react",
+      "name": "React / Vite",
+      "category": "Frontend",
+      "icon": "RE",
+      "packageManagers": ["npm", "pnpm", "yarn"],
+      "databases": ["none"],
+      "auth": ["none"],
+      "styling": ["css", "tailwind"]
+    },
+    {
+      "id": "django",
+      "name": "Django",
+      "category": "Python full stack",
+      "icon": "DJ",
+      "packageManagers": ["pip"],
+      "databases": ["sqlite", "postgresql"],
+      "auth": ["none", "session"],
+      "styling": ["css"]
+    },
+    {
+      "id": "node",
+      "name": "Node.js",
+      "category": "JavaScript API",
+      "icon": "NO",
+      "packageManagers": ["npm", "pnpm", "yarn"],
+      "databases": ["none", "sqlite", "postgresql", "mongodb"],
+      "auth": ["none", "jwt"],
+      "styling": ["none"]
+    },
+    {
+      "id": "vue",
+      "name": "Vue.js",
+      "category": "Frontend",
+      "icon": "VU",
+      "packageManagers": ["npm", "pnpm", "yarn"],
+      "databases": ["none"],
+      "auth": ["none"],
+      "styling": ["css", "tailwind"]
+    },
+    {
+      "id": "angular",
+      "name": "Angular",
+      "category": "Frontend",
+      "icon": "NG",
+      "packageManagers": ["npm", "pnpm", "yarn"],
+      "databases": ["none"],
+      "auth": ["none"],
+      "styling": ["css", "tailwind"]
+    },
+    {
+      "id": "fastapi",
+      "name": "FastAPI",
+      "category": "Python API",
+      "icon": "FA",
+      "packageManagers": ["pip"],
+      "databases": ["none", "sqlite", "postgresql"],
+      "auth": ["none", "jwt"],
+      "styling": ["none"]
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "category": "React full stack",
+      "icon": "NX",
+      "packageManagers": ["npm", "pnpm", "yarn"],
+      "databases": ["none", "sqlite", "postgresql"],
+      "auth": ["none", "session"],
+      "styling": ["css", "tailwind"]
+    },
+    {
+      "id": "svelte",
+      "name": "Svelte",
+      "category": "Frontend",
+      "icon": "SV",
+      "packageManagers": ["npm", "pnpm", "yarn"],
+      "databases": ["none"],
+      "auth": ["none"],
+      "styling": ["css", "tailwind"]
+    },
+    {
+      "id": "express",
+      "name": "Express.js",
+      "category": "JavaScript API",
+      "icon": "EX",
+      "packageManagers": ["npm", "pnpm", "yarn"],
+      "databases": ["none", "sqlite", "postgresql", "mongodb"],
+      "auth": ["none", "jwt"],
+      "styling": ["none"]
+    },
+    {
+      "id": "laravel",
+      "name": "Laravel",
+      "category": "PHP full stack",
+      "icon": "LV",
+      "packageManagers": ["composer"],
+      "databases": ["sqlite", "mysql", "postgresql"],
+      "auth": ["none", "session"],
+      "styling": ["css"]
+    },
+    {
+      "id": "spring",
+      "name": "Spring Boot",
+      "category": "Java API",
+      "icon": "SP",
+      "packageManagers": ["maven"],
+      "databases": ["h2", "postgresql", "mysql"],
+      "auth": ["none", "jwt"],
+      "styling": ["none"]
+    },
+    {
+      "id": "rails",
+      "name": "Ruby on Rails",
+      "category": "Ruby full stack",
+      "icon": "RB",
+      "packageManagers": ["bundler"],
+      "databases": ["sqlite", "postgresql", "mysql"],
+      "auth": ["none", "session"],
+      "styling": ["css"]
+    },
+    {
+      "id": "aspnet",
+      "name": "ASP.NET Core",
+      "category": ".NET API",
+      "icon": "CS",
+      "packageManagers": ["dotnet"],
+      "databases": ["sqlite", "postgresql", "sqlserver"],
+      "auth": ["none", "jwt"],
+      "styling": ["none"]
+    }
+  ]
+}
