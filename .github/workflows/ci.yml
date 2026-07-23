@@ -39,6 +39,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - run: pip install -r api/requirements.txt
       - run: PYTHONPATH=api python api/scripts/export_default.py ${{ matrix.framework }} .generated/${{ matrix.framework }}
       - working-directory: .generated/${{ matrix.framework }}
         run: npm install
@@ -58,6 +59,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - run: pip install -r api/requirements.txt
       - run: PYTHONPATH=api python api/scripts/export_default.py ${{ matrix.framework }} .generated/${{ matrix.framework }}
       - working-directory: .generated/${{ matrix.framework }}
         run: pip install -r requirements.txt
@@ -76,6 +78,7 @@ jobs:
           distribution: temurin
           java-version: "21"
           cache: maven
+      - run: pip install -r api/requirements.txt
       - run: PYTHONPATH=api python api/scripts/export_default.py spring .generated/spring
       - working-directory: .generated/spring
         run: mvn test package
@@ -91,6 +94,7 @@ jobs:
         with:
           php-version: "8.3"
           tools: composer
+      - run: pip install -r api/requirements.txt
       - run: PYTHONPATH=api python api/scripts/export_default.py laravel .generated/laravel
       - working-directory: .generated/laravel
         run: composer install --no-interaction
@@ -107,6 +111,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
+      - run: pip install -r api/requirements.txt
       - run: PYTHONPATH=api python api/scripts/export_default.py rails .generated/rails
       - working-directory: .generated/rails
         run: bundle install
@@ -123,6 +128,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.0.x"
+      - run: pip install -r api/requirements.txt
       - run: PYTHONPATH=api python api/scripts/export_default.py aspnet .generated/aspnet
       - working-directory: .generated/aspnet
         run: dotnet restore GeneratedSmoke.csproj
