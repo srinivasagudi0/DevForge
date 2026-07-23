@@ -1,0 +1,132 @@
+name: DevForge CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: api/requirements-dev.txt
+      - run: pip install -r api/requirements-dev.txt
+      - run: PYTHONPATH=api pytest api/tests
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run lint
+      - run: npm run build
+
+  generated-javascript:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [react, node, vue, angular, nextjs, svelte, express]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: PYTHONPATH=api python api/scripts/export_default.py ${{ matrix.framework }} .generated/${{ matrix.framework }}
+      - working-directory: .generated/${{ matrix.framework }}
+        run: npm install
+      - working-directory: .generated/${{ matrix.framework }}
+        run: npm test -- --run
+      - working-directory: .generated/${{ matrix.framework }}
+        run: npm run build --if-present
+
+  generated-python:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [flask, django, fastapi]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: PYTHONPATH=api python api/scripts/export_default.py ${{ matrix.framework }} .generated/${{ matrix.framework }}
+      - working-directory: .generated/${{ matrix.framework }}
+        run: pip install -r requirements.txt
+      - working-directory: .generated/${{ matrix.framework }}
+        run: pytest
+
+  generated-spring:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - run: PYTHONPATH=api python api/scripts/export_default.py spring .generated/spring
+      - working-directory: .generated/spring
+        run: mvn test package
+
+  generated-php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer
+      - run: PYTHONPATH=api python api/scripts/export_default.py laravel .generated/laravel
+      - working-directory: .generated/laravel
+        run: composer install --no-interaction
+      - working-directory: .generated/laravel
+        run: composer test
+
+  generated-ruby:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+      - run: PYTHONPATH=api python api/scripts/export_default.py rails .generated/rails
+      - working-directory: .generated/rails
+        run: bundle install
+      - working-directory: .generated/rails
+        run: bundle exec rails test
+
+  generated-dotnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - run: PYTHONPATH=api python api/scripts/export_default.py aspnet .generated/aspnet
+      - working-directory: .generated/aspnet
+        run: dotnet restore GeneratedSmoke.csproj
+      - working-directory: .generated/aspnet
+        run: dotnet build GeneratedSmoke.csproj --no-restore
+      - working-directory: .generated/aspnet
+        run: dotnet test tests/GeneratedSmoke.Tests.csproj
